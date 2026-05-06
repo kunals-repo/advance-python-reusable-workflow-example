@@ -1,1 +1,13 @@
 
+name: Call Advanced Python Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  calling-reusable-workflow:
+    uses: kunals-repo/advance-python-reusable-workflow-example/.github/workflows/python-reusable.yml@main
+
+    with:
+      python_version: "3.11"
+      main_directory: "main.py"
