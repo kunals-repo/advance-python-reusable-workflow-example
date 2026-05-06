@@ -11,4 +11,4 @@ jobs:
 
     with:
       python_version: "3.11"
-      main_directory: "main-code.py"
+      main_directory: "main_code.py"
