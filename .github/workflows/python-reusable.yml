@@ -1,1 +1,42 @@
 
+name: Advanced Python Reusable Workflow
+
+on:
+  workflow_call:
+    inputs:
+      python_version:
+        required: true
+        type: string
+
+      main_directory:
+        required: true
+        type: string
+
+jobs:
+  python-ci:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ inputs.python_version }}
+
+      - name: Install Dependencies
+        run: |
+          pip install pytest flake8
+
+      - name: Lint Code
+        run: flake8 ${{ inputs.main_directory }}
+
+      - name: Run Tests
+        run: pytest tests/test_sample.py
+
+      - name: Upload Test Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: tests/
