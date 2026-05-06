@@ -2,6 +2,7 @@
 name: Call Advanced Python Workflow
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
